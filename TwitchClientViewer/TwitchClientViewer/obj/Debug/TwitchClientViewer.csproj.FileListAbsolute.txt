@@ -1,0 +1,1 @@
+C:\Work\GitHub\TwitchViewer\TwitchClientViewer\TwitchClientViewer\bin\Debug\TwitchClientViewer.exe.config
