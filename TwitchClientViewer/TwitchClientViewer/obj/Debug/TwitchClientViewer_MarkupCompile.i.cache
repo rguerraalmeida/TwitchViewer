@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Work\GitHub\TwitchViewer\TwitchClientViewer\TwitchClientViewer\obj\Debug\
+E:\Work\GitHub\TwitchViewer\TwitchClientViewer\TwitchClientViewer\obj\Debug\
 TwitchClientViewer
 none
 false
 DEBUG;TRACE
-C:\Work\GitHub\TwitchViewer\TwitchClientViewer\TwitchClientViewer\App.xaml
-2-701707839
+E:\Work\GitHub\TwitchViewer\TwitchClientViewer\TwitchClientViewer\App.xaml
+41863584806
 
-9-1855977957
-14-1148654046
-MainWindow.xaml;Resources\Icons.xaml;
+332016296548
+29-1732670653
+BrowserWindow.xaml;HosterWindow.xaml;MainWindow.xaml;Resources\Icons.xaml;
 
 False
 
