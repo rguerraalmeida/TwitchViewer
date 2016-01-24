@@ -11,6 +11,9 @@ I've used MaahApp for Metro like controls : http://mahapps.com/controls/
 
 You will need to set your ClientId in OAuthData class
 
+Go to: https://secure.twitch.tv/settings/connections and register a new client 
+or go directly to: https://secure.twitch.tv/kraken/oauth2/clients/new
+
 If you need anything drop me a line. 
 
 Cheers
