@@ -121,6 +121,9 @@ namespace TwitchClientViewer
             //var player = new HosterWindow(StreamViewModel.SelectedLiveStream.DisplayName);
             //player.Show();
 
+            //var VlcPlayer = new VlcWindow();
+            //VlcPlayer.Show();
+
             this.PlayVLC();
 
         }
@@ -164,6 +167,32 @@ namespace TwitchClientViewer
             process.EnableRaisingEvents = true;
             process.Exited += new EventHandler((object proc, EventArgs processEa) => AutoClosingMessageBox.Show("Stream Ended or Streamer is offline", "End", 2000));
         }
+
+
+        private void StartLivestreamer()
+        {
+            if (File.Exists("Data\\startLivestreamer.bat"))
+            {
+                File.Delete("Data\\startLivestreamer.bat");
+            }
+
+            StreamWriter streamWriter = new StreamWriter("Data\\startLivestreamer.bat", false);
+            try
+            {
+                streamWriter.WriteLine("@echo");
+                string[] strArrays = new string[] { "Data\\livestreamer\\livestreamer.exe -p \"Data\\", player, "\" \"http://www.twitch.tv/", name, "\" ", quality };
+                streamWriter.WriteLine(string.Concat(strArrays));
+                streamWriter.WriteLine("@echo off");
+            }
+            finally
+            {
+                if (streamWriter != null)
+                {
+                    ((IDisposable)streamWriter).Dispose();
+                }
+            }
+        }
+
 
         private void MetroWindow_Closing(object sender, CancelEventArgs e)
         {

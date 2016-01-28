@@ -8,7 +8,7 @@ namespace TwitchClientViewer
 {
     class OAuthData
     {
-        public static string clientId = "use your twitch clientid";
+        public static string clientId = "REPLACE-THIS-STRING";
         public static string clientSecret = string.Empty;
         public static string token = string.Empty;
     }
