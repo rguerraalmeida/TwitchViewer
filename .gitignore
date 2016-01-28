@@ -211,3 +211,7 @@ GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
 
+OAuthData.cs
+
+# Custom Folders
+Data/
