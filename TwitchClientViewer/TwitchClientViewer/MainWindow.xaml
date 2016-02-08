@@ -5,20 +5,60 @@
         Title="MainWindow" MinHeight="600" MinWidth="1024" Height="600" Width="1024"
         GlowBrush="{DynamicResource AccentColorBrush}" Closing="MetroWindow_Closing">
     <Mahapps:MetroWindow.Resources>
-        <DataTemplate x:Key="TemplateImageDataTemplate">
-            <Grid>
-                <!--<Image x:Name="PreviewLarge" Source="{Binding SelectedLiveStream.PreviewLarge}" Margin="0,39,0,0" Width="Auto"/>-->
-                <!--<Image x:Name="PreviewTemplate" Source="{Binding SelectedLiveStream.TemplateSource}" Visibility="Hidden" />-->
-            </Grid>
-            <!--<DataTemplate.Triggers>
-                <DataTrigger Binding="{Binding ElementName=SelectedLiveStream.TemplateLoaded}" Value="True">
-                    <Setter TargetName="PreviewLarge" Property="Border.Visibility" Value="Hidden"/>
-                    <Setter TargetName="PreviewTemplate" Property="Border.Visibility" Value="Visible"/>
-                </DataTrigger>
-            </DataTemplate.Triggers>-->
-        </DataTemplate>
+        <Style TargetType="{x:Type RadioButton}" x:Key="radio2">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <BulletDecorator Background="White" Cursor="Hand">
+                            <BulletDecorator.Bullet>
+
+                                <Grid Height="18" Width="18">
+                                    <!--Define size of the Bullet-->
+                                    <Polygon Name="TickMark"
+                            Points="4,9 8,15 15,3 8,11 4,9"
+                            Stroke="#FF0092B2"
+                            StrokeThickness="1"
+                            Visibility="Hidden"
+                            Fill="#FF00092B2">
+                                    </Polygon>
+
+                                    <Border CornerRadius="3,0,0,3" BorderBrush="#FF565656" BorderThickness="2" />
+
+                                </Grid>
+                            </BulletDecorator.Bullet>
+
+                            <!--Text element-->
+                            <Border Background="#FF565656" CornerRadius="0,3,3,0" Width="50" Height="18">
+                                <TextBlock Margin="3,1,0,0" Foreground="#FFFFFFFF" FontFamily="Calibri" FontSize="12">
+                            <ContentPresenter />
+                                </TextBlock>
+                            </Border>
+                        </BulletDecorator>
+
+
+                        <!--If item is checked, trigger the visibility of the mark-->
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter TargetName="TickMark" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Mahapps:MetroWindow.Resources>
     <Grid>
+        <StackPanel Margin="394,9,172,534" Orientation="Horizontal">
+            <Label >Display Type:</Label>
+            <RadioButton GroupName="displaytype">List</RadioButton>
+            <RadioButton GroupName="displaytype">Grid</RadioButton>
+            
+            <Label >Sort order:</Label>
+            <RadioButton GroupName="sortorder">Viewer Count</RadioButton>
+            <RadioButton GroupName="sortorder">Alphabetically</RadioButton>
+        </StackPanel>
+
         <Label x:Name="label" Content="Username:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="70"/>
         <TextBox x:Name="textBox" Text="dazzzY0" Height="23" Margin="85,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="181" KeyUp="textBox_KeyUp"/>
         <Button x:Name="signin" Content="Signin on Twitch" Margin="271,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="118" Click="signin_Click"  IsEnabled="False" Height="23"/>
@@ -39,8 +79,7 @@
         <Image Source="{Binding SelectedLiveStream.Logo}" HorizontalAlignment="Left" Height="60" Margin="394,44,0,0" VerticalAlignment="Top" Width="60"  />
         <TextBlock Text="{Binding SelectedLiveStream.DisplayName}" Height="23" Margin="459,44,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="427" KeyUp="textBox_KeyUp"/>
         <TextBlock Text="{Binding SelectedLiveStream.GameName}" Height="23" Margin="459,75,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="427" KeyUp="textBox_KeyUp"/>
-        <Image Source="{Binding SelectedLiveStream.PreviewLarge}" Margin="394,109,10,10"/>
-        <!--<ContentPresenter ContentTemplate="{StaticResource TemplateImageDataTemplate}" DataContext="{Binding}"    Margin="394,109,10,10"/>-->
+        <Image Source="{Binding SelectedLiveStream.PreviewTemplate}" Margin="394,109,10,10"/>
 
         <Button Margin="0,10,10,0" VerticalAlignment="Top" IsEnabled="True" Height="34" Click="Refresh_Click" HorizontalAlignment="Right" Width="34">
             <Path Width="24" Height="24" Stretch="Uniform" UseLayoutRounding="False" Fill="Black" Data="F1 M 20.8105,7.09424L 24.2607,33.1177L 15.9209,29.6714C 14.2021,33.7583 13.251,38.2466 13.251,42.9595C 13.251,61.9429 28.6406,77.3267 47.6201,77.3267C 53.2109,77.3267 58.4854,75.9829 63.1504,73.6147L 69.4775,79.9419C 63.0732,83.7349 55.6025,85.9204 47.6201,85.9204C 23.8936,85.9204 4.6582,66.688 4.6582,42.9595C 4.6582,37.0845 5.84277,31.4888 7.98047,26.3901L 0,23.0913L 20.8105,7.09424 Z M 47.6191,0.000488281C 71.3457,0.000488281 90.5791,19.2368 90.5791,42.9604C 90.5791,47.8813 89.748,52.6089 88.2227,57.0112L 96.0176,60.3472L 75.0029,76.0845L 71.8828,50.0181L 80.2969,53.6187C 81.3936,50.2642 81.9883,46.6821 81.9883,42.9604C 81.9883,23.9771 66.5986,8.59326 47.6191,8.59326C 43.3438,8.59326 39.2559,9.38037 35.4814,10.8052L 28.9404,4.26318C 34.5898,1.53076 40.9238,0.000488281 47.6191,0.000488281 Z "/>

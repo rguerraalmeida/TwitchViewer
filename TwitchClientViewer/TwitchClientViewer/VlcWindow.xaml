@@ -8,6 +8,6 @@
         mc:Ignorable="d"
         Title="VlcWindow" Height="300" Width="300" Closing="Window_Closing">
     <Grid>
-        <wpf:VlcPlayer x:Name="Player" EndBehavior="Repeat"/>
+        <wpf:VlcPlayer x:Name="Player" EndBehavior="Default"/>
     </Grid>
 </Window>

@@ -18,6 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TwitchClientViewer.Coverters;
+using TwitchClientViewer.Processes;
 using TwitchClientViewer.ViewModels;
 
 namespace TwitchClientViewer
@@ -27,9 +28,6 @@ namespace TwitchClientViewer
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-        const string vlcPath = "vlc-2.1.5\\vlc.exe";
-        const string quality = "source"; //"best";
-
         string token = string.Empty;
         string username = string.Empty;
 
@@ -105,7 +103,7 @@ namespace TwitchClientViewer
                         GameName = stream.Game,
                         PreviewLarge = stream.Preview.Large,
                         GameLogo = stream.Preview.Medium,
-                        Template = StreamPreviewTemplateUrl.Convert(stream.Preview.Template),
+                        PreviewTemplate = StreamPreviewTemplateUrl.Convert(stream.Preview.Template),
                 };
 
                     streamsbuffer.Add(temp);
@@ -118,87 +116,28 @@ namespace TwitchClientViewer
 
         private void Play_click(object sender, RoutedEventArgs e)
         {
-            //var player = new HosterWindow(StreamViewModel.SelectedLiveStream.DisplayName);
-            //player.Show();
-
-            //var VlcPlayer = new VlcWindow();
-            //VlcPlayer.Show();
-
-            this.PlayVLC();
-
+            this.Play();
         }
 
-        private void createTempBat(string name, string quality, string player)
+        private void Play()
         {
-            if (File.Exists("Data\\temp.bat"))
-            {
-                File.Delete("Data\\temp.bat");
-            }
+            LivestreamerWrapper ls = new LivestreamerWrapper();
+            ls.Start(StreamViewModel.SelectedLiveStream.LiveUrl, Helpers.LivestreamerOptions.Http);
 
-            StreamWriter streamWriter = new StreamWriter("Data\\temp.bat",false);
-            try
-            {
-                streamWriter.WriteLine("@echo");
-                string[] strArrays = new string[] { "Data\\livestreamer\\livestreamer.exe -p \"Data\\", player, "\" \"http://www.twitch.tv/", name, "\" ", quality };
-                streamWriter.WriteLine(string.Concat(strArrays));
-                streamWriter.WriteLine("@echo off");
-            }
-            finally
-            {
-                if (streamWriter != null)
-                {
-                    ((IDisposable)streamWriter).Dispose();
-                }
-            }
+            //VlcWindow vlcwindow = new VlcWindow();
+            //vlcwindow.ShowDialog();
         }
-
-        private void PlayVLC()
-        {
-            this.createTempBat(StreamViewModel.SelectedLiveStream.DisplayName, quality, vlcPath);
-            Process process = new Process();
-            ProcessStartInfo processStartInfo = new ProcessStartInfo()
-            {
-                CreateNoWindow = true,
-                FileName = "Data\\temp.bat",
-                UseShellExecute = false
-            };
-            process.StartInfo = processStartInfo;
-            process.Start();
-            process.EnableRaisingEvents = true;
-            process.Exited += new EventHandler((object proc, EventArgs processEa) => AutoClosingMessageBox.Show("Stream Ended or Streamer is offline", "End", 2000));
-        }
-
-
-        private void StartLivestreamer()
-        {
-            if (File.Exists("Data\\startLivestreamer.bat"))
-            {
-                File.Delete("Data\\startLivestreamer.bat");
-            }
-
-            StreamWriter streamWriter = new StreamWriter("Data\\startLivestreamer.bat", false);
-            try
-            {
-                streamWriter.WriteLine("@echo");
-                string[] strArrays = new string[] { "Data\\livestreamer\\livestreamer.exe -p \"Data\\", player, "\" \"http://www.twitch.tv/", name, "\" ", quality };
-                streamWriter.WriteLine(string.Concat(strArrays));
-                streamWriter.WriteLine("@echo off");
-            }
-            finally
-            {
-                if (streamWriter != null)
-                {
-                    ((IDisposable)streamWriter).Dispose();
-                }
-            }
-        }
-
 
         private void MetroWindow_Closing(object sender, CancelEventArgs e)
         {
             if (File.Exists("Data\\temp.bat"))
             {
                 File.Delete("Data\\temp.bat");
+            }
+
+            if (File.Exists("Data\\startLivestreamer.bat"))
+            {
+                File.Delete("Data\\startLivestreamer.bat");
             }
         }
               
