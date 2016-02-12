@@ -156,28 +156,38 @@
     <Compile Include="HosterWindow.xaml.cs">
       <DependentUpon>HosterWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Links.cs" />
-    <Compile Include="Models\Preview.cs" />
-    <Compile Include="Models\Stream.cs" />
-    <Compile Include="Models\StreamList.cs" />
+    <Compile Include="Api\Models\Links.cs" />
+    <Compile Include="Api\Models\Preview.cs" />
+    <Compile Include="Api\Models\Stream.cs" />
+    <Compile Include="Api\Models\StreamList.cs" />
+    <Compile Include="Models\Communications\Message.cs" />
+    <Compile Include="Models\Communications\MessageError.cs" />
+    <Compile Include="Models\Communications\MessageState.cs" />
+    <Compile Include="Models\RequestState.cs" />
     <Compile Include="OAuthData.cs" />
     <Compile Include="Processes\LivestreamerWrapper.cs" />
     <Compile Include="Processes\LivestreamerOptions.cs" />
     <Compile Include="Reflect.cs" />
     <Compile Include="ViewModels\BindableBase.cs" />
+    <Compile Include="ViewModels\LiveStreamViewModel.cs" />
     <Compile Include="ViewModels\PropertySupport.cs" />
     <Compile Include="ViewModels\StreamViewModel.cs" />
+    <Compile Include="Views\Following\FollowingTemplateSelector.cs" />
+    <Compile Include="Views\Following\FollowingView.xaml.cs">
+      <DependentUpon>FollowingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Following\FollowingViewModel.cs" />
     <Compile Include="VlcWindow.xaml.cs">
       <DependentUpon>VlcWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\WebRequest.cs" />
-    <Compile Include="Models\Channel.cs" />
+    <Compile Include="Api\Models\Channel.cs" />
     <Compile Include="Models\ErrorMessage.cs" />
-    <Compile Include="Models\Folow.cs" />
-    <Compile Include="Models\TwitchData.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\FollowList.cs" />
-    <Compile Include="TwitchApi.cs" />
+    <Compile Include="Api\Models\Folow.cs" />
+    <Compile Include="Models\RequestData.cs" />
+    <Compile Include="Api\Models\User.cs" />
+    <Compile Include="Api\Models\FollowList.cs" />
+    <Compile Include="Api\Twitch.cs" />
     <Compile Include="Helpers\WebResponse.cs" />
     <Page Include="BrowserWindow.xaml">
       <SubType>Designer</SubType>
@@ -202,6 +212,10 @@
     <Page Include="Resources\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Following\FollowingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VlcWindow.xaml">
       <SubType>Designer</SubType>

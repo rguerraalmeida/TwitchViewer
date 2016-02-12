@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TwitchClientViewer.Models
+namespace TwitchClientViewer.Api.Models
 {
     public class FollowList
     {

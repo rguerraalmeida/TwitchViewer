@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TwitchClientViewer.Models
+namespace TwitchClientViewer.Api.Models
 {
     //{"display_name":"dazzzY0","_id":55854217,"name":"dazzzy0","type":"user",
     //"bio":"Geek, Gaming Enthusiast, Internet Addict, Random Overclocker.",

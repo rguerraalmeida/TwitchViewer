@@ -215,3 +215,7 @@ OAuthData.cs
 
 # Custom Folders
 Data/
+TwitchClientViewer/TwitchClientViewer/obj/Debug/MainWindow.g.i.cs
+TwitchClientViewer/TwitchClientViewer/obj/Debug/TwitchClientViewer_MarkupCompile.i.cache
+TwitchClientViewer/TwitchClientViewer/obj/Debug/TwitchClientViewer.csproj.FileListAbsolute.txt
+TwitchClientViewer/TwitchClientViewer/OAuthData.cs

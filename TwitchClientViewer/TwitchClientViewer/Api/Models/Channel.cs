@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace TwitchClientViewer.Models
+namespace TwitchClientViewer.Api.Models
 {
     public class Channel
     {

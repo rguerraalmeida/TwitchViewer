@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Web;
+using TwitchClientViewer.Api.Models;
 using TwitchClientViewer.Models;
 
 namespace TwitchClientViewer
@@ -41,7 +42,7 @@ namespace TwitchClientViewer
             return userAuthorizeUrl + queryString;
         }
 
-        private TwitchData<User> ValidateUsername(string username)
+        private RequestData<User> ValidateUsername(string username)
         {
             var response = HttpWebRequestWrapper.ExecuteWebRequest("https://api.twitch.tv/kraken/users/" + username);
 
@@ -53,11 +54,11 @@ namespace TwitchClientViewer
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 var responseError = HttpWebRequestWrapper.ParseResponse<User>(response.ResponseString);
-                return new TwitchData<User>(responseError);
+                return new RequestData<User>(responseError);
             }
 
             var responseData = HttpWebRequestWrapper.ParseResponse<User>(response.ResponseString);
-            return new TwitchData<User>(responseData);
+            return new RequestData<User>(responseData);
         }
 
         private string GetUserClientId(string username)

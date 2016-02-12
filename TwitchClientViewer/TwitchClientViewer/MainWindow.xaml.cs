@@ -1,6 +1,7 @@
 ﻿using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -17,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TwitchClientViewer.Api;
 using TwitchClientViewer.Coverters;
 using TwitchClientViewer.Processes;
 using TwitchClientViewer.ViewModels;
@@ -32,7 +34,7 @@ namespace TwitchClientViewer
         string username = string.Empty;
 
         OAuthFlow flow = new OAuthFlow();
-        TwitchApi api = new TwitchApi();
+        Twitch api = new Twitch();
         StreamViewModel StreamViewModel = new StreamViewModel();
 
         public MainWindow()
@@ -90,11 +92,11 @@ namespace TwitchClientViewer
             var currentStreams = api.Streams(username);
             if (!currentStreams.HasError)
             {
-                var streamsbuffer = new List<LiveStream>();
+                var streamsbuffer = new ObservableCollection<LiveStreamViewModel>();
 
                 foreach (var stream in currentStreams.Data.Streams)
                 {
-                    var temp = new LiveStream()
+                    var temp = new LiveStreamViewModel()
                     {
                         Logo = stream.Channel.Logo,
                         DisplayName = stream.Channel.DisplayName,
@@ -104,11 +106,12 @@ namespace TwitchClientViewer
                         PreviewLarge = stream.Preview.Large,
                         GameLogo = stream.Preview.Medium,
                         PreviewTemplate = StreamPreviewTemplateUrl.Convert(stream.Preview.Template),
+                        ViewerCount = stream.Viewers,
                 };
 
                     streamsbuffer.Add(temp);
                 }
-                StreamViewModel.LiveStreams = streamsbuffer;
+                StreamViewModel.LiveStreams = new ObservableCollection<LiveStreamViewModel>(streamsbuffer.OrderBy(o=>o.ViewerCount));
                 StreamViewModel.RaisePropertyChangedOn(() => StreamViewModel.LiveStreams);
             }
 

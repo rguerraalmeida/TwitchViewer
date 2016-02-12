@@ -1,31 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TwitchClientViewer.Models
 {
-    public class TwitchData<T>
+    public class RequestData<T>
     {
         public bool HasError = false;
         public T Data = default(T);
-        public ErrorMessage ErrorMessage = null;
+        public RequestErrorMessage ErrorMessage = null;
 
-        public TwitchData() {}
+        public RequestData() {}
 
-        public TwitchData(T data)
+        public RequestData(T data)
         {
             this.Data = data;
         }
 
-        public TwitchData(ErrorMessage errorMessage)
+        public RequestData(RequestErrorMessage errorMessage)
         {
             this.ErrorMessage = errorMessage;
             this.HasError = true;
         }
 
-        public TwitchData(T data, ErrorMessage errorMessage)
+        public RequestData(T data, RequestErrorMessage errorMessage)
         {
             this.Data = data;
             this.ErrorMessage = errorMessage;

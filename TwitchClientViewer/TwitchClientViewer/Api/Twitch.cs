@@ -1,34 +1,35 @@
 ﻿using System.Net;
 using TwitchClientViewer.Models;
+using TwitchClientViewer.Api.Models;
 
-namespace TwitchClientViewer
+namespace TwitchClientViewer.Api
 {
-    public class TwitchApi
+    public class Twitch
     {
-        public TwitchData<FollowList> Follows(string username)
+        public RequestData<FollowList> Follows(string username)
         {
             var requestUrl = "https://api.twitch.tv/kraken/users/"+ username + "/follows/channels";
             var response = HttpWebRequestWrapper.ExecuteWebRequest(requestUrl, OAuthData.token);
 
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                var responseError = HttpWebRequestWrapper.ParseResponse<ErrorMessage>(response.ResponseString);
-                return new TwitchData<FollowList>(responseError);
+                var responseError = HttpWebRequestWrapper.ParseResponse<RequestErrorMessage>(response.ResponseString);
+                return new RequestData<FollowList>(responseError);
             }
 
             var responseData = HttpWebRequestWrapper.ParseResponse<FollowList>(response.ResponseString);
-            return new TwitchData<FollowList>(responseData);
+            return new RequestData<FollowList>(responseData);
         }
 
-        public TwitchData<StreamList> Streams(string username)
+        public RequestData<StreamList> Streams(string username)
         {
             var requestUrl = "https://api.twitch.tv/kraken/streams/followed";
             var response = HttpWebRequestWrapper.ExecuteWebRequest(requestUrl, OAuthData.token);
 
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                var responseError = HttpWebRequestWrapper.ParseResponse<ErrorMessage>(response.ResponseString);
-                return new TwitchData<StreamList>(responseError);
+                var responseError = HttpWebRequestWrapper.ParseResponse<RequestErrorMessage>(response.ResponseString);
+                return new RequestData<StreamList>(responseError);
             }
 
             var responseData = HttpWebRequestWrapper.ParseResponse<StreamList>(response.ResponseString);
@@ -49,22 +50,22 @@ namespace TwitchClientViewer
                 } while (total > current);
             }
 
-            return new TwitchData<StreamList>(responseData);
+            return new RequestData<StreamList>(responseData);
         }
 
-        public TwitchData<StreamList> NextStreams(string url)
+        public RequestData<StreamList> NextStreams(string url)
         {
             var requestUrl = url;
             var response = HttpWebRequestWrapper.ExecuteWebRequest(requestUrl, OAuthData.token);
 
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                var responseError = HttpWebRequestWrapper.ParseResponse<ErrorMessage>(response.ResponseString);
-                return new TwitchData<StreamList>(responseError);
+                var responseError = HttpWebRequestWrapper.ParseResponse<RequestErrorMessage>(response.ResponseString);
+                return new RequestData<StreamList>(responseError);
             }
 
             var responseData = HttpWebRequestWrapper.ParseResponse<StreamList>(response.ResponseString);
-            return new TwitchData<StreamList>(responseData);
+            return new RequestData<StreamList>(responseData);
         }
     }
 }

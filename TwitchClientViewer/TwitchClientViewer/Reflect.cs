@@ -98,6 +98,8 @@ namespace TwitchClientViewer
 
             return memberExpression.Member;
         }
+
+       
     }
 
 
@@ -112,6 +114,8 @@ namespace TwitchClientViewer
 
             return Reflect.GetMemberInfo(expression as LambdaExpression);
         }
+
+        
 
         public static MemberInfo GetMember<TResult>(Expression<Func<T, TResult>> expression)
         {
@@ -184,6 +188,23 @@ namespace TwitchClientViewer
             if (property == null)
                 throw new InvalidOperationException("Member in expression is not a property.");
             return property;
+        }
+    }
+
+
+    /// <summary>
+    /// Usage:  MemberInfo member = ReflectionUtility.GetMemberInfo((Program p) => p.Name);
+    /// Taken from: http://stackoverflow.com/questions/273941/get-property-name-and-type-using-lambda-expression
+    /// </summary>
+    public static class ReflectionUtility
+    {
+        public static MemberInfo GetMemberInfo<T, U>(Expression<Func<T, U>> expression)
+        {
+            var member = expression.Body as MemberExpression;
+            if (member != null)
+                return member.Member;
+
+            throw new ArgumentException("Expression is not a member access", "expression");
         }
     }
 }
