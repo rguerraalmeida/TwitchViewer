@@ -51,3 +51,5 @@ E:\Work\GitHub\TwitchViewer\TwitchClientViewer\TwitchClientViewer\obj\Debug\Twit
 E:\Work\GitHub\TwitchViewer\TwitchClientViewer\TwitchClientViewer\obj\Debug\TwitchClientViewer.exe
 E:\Work\GitHub\TwitchViewer\TwitchClientViewer\TwitchClientViewer\obj\Debug\TwitchClientViewer.pdb
 E:\Work\GitHub\TwitchViewer\TwitchClientViewer\TwitchClientViewer\obj\Debug\TwitchClientViewer.csprojResolveAssemblyReference.cache
+E:\Work\GitHub\TwitchViewer\TwitchClientViewer\TwitchClientViewer\obj\Debug\Views\Following\FollowingView.g.cs
+E:\Work\GitHub\TwitchViewer\TwitchClientViewer\TwitchClientViewer\obj\Debug\Views\Following\FollowingView.baml
