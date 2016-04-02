@@ -53,7 +53,7 @@ namespace TwitchClientViewer.ViewModels
         /// </summary>
         /// <typeparam name="T">The type of the property that has a new value</typeparam>
         /// <param name="propertyExpression">A Lambda expression representing the property that has a new value.</param>
-        protected virtual void OnPropertyChanged<T>(Expression<Func<T>> propertyExpression)
+        protected virtual void RaisePropertyChanged<T>(Expression<Func<T>> propertyExpression)
         {
             var propertyName = PropertySupport.ExtractPropertyName(propertyExpression);
             this.OnPropertyChanged(propertyName);

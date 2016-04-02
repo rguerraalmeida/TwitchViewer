@@ -1,4 +1,4 @@
-﻿namespace TwitchClientViewer
+﻿namespace TwitchClientViewer.OAuth
 {
     //"user_read"; //: Read access to non-public user information, such as email address.
     //"user_blocks_edit"; //: Ability to ignore or unignore on behalf of a user.

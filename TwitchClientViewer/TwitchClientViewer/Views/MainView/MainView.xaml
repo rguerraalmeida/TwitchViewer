@@ -1,0 +1,53 @@
+﻿<Mahapps:MetroWindow 
+        x:Class="TwitchClientViewer.Views.MainView.MainView"
+        xmlns:Mahapps="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TwitchClientViewer.Views.MainView"
+        xmlns:prism="http://www.codeplex.com/prism"
+        mc:Ignorable="d"
+        Title="MainView" Height="300" Width="300"
+        GlowBrush="{DynamicResource AccentColorBrush}">
+    
+    <Mahapps:MetroWindow.RightWindowCommands>
+        <Mahapps:WindowCommands>
+            <Button Command="{Binding LoginCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20"
+                   Height="20"
+                   Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_people}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="4 0 0 0"
+                   VerticalAlignment="Center"
+                   Text="{Binding UserName}" />
+                </StackPanel>
+            </Button>
+        </Mahapps:WindowCommands>
+    </Mahapps:MetroWindow.RightWindowCommands>
+    <Mahapps:MetroWindow.LeftWindowCommands>
+        <Mahapps:WindowCommands>
+            <Button Command="{Binding ShowFolowingChannelsView}">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20"
+                   Height="20"
+                   Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_heart}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="4 0 0 0"
+                   VerticalAlignment="Center"
+                   Text="{Binding UserName}" />
+                </StackPanel>
+            </Button>
+        </Mahapps:WindowCommands>
+    </Mahapps:MetroWindow.LeftWindowCommands>
+    <Grid>
+        
+    </Grid>
+</Mahapps:MetroWindow>

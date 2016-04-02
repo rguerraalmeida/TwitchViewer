@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 E:\Work\GitHub\TwitchViewer\TwitchClientViewer\TwitchClientViewer\App.xaml
-6467260472
+91534995031
 654704160907
-47-2002146071
-36-212999636
-BrowserWindow.xaml;HosterWindow.xaml;MainWindow.xaml;Resources\Icons.xaml;Views\Following\FollowingView.xaml;VlcWindow.xaml;
+58-255407137
+96902055726
+BrowserWindow.xaml;Component\SimpleText\SimpleText.xaml;HosterWindow.xaml;MainWindow.xaml;Resources\Icons.xaml;Views\Following\FollowingView.xaml;Views\Login\LoginView.xaml;Views\MainView\MainView.xaml;VlcWindow.xaml;
 
 False
 

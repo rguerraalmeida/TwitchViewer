@@ -1,17 +1,11 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Owin;
-using Owin.Security.Providers.Twitch;
-using System;
-using System.IO;
+﻿using System;
 using System.Linq;
 using System.Net;
-using System.Net.Http.Headers;
 using System.Web;
 using TwitchClientViewer.Api.Models;
 using TwitchClientViewer.Models;
 
-namespace TwitchClientViewer
+namespace TwitchClientViewer.OAuth
 {
     public class OAuthFlow
     {

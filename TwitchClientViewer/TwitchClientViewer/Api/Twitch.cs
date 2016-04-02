@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using TwitchClientViewer.Models;
 using TwitchClientViewer.Api.Models;
+using TwitchClientViewer.OAuth;
 
 namespace TwitchClientViewer.Api
 {

@@ -20,6 +20,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TwitchClientViewer.Api;
 using TwitchClientViewer.Coverters;
+using TwitchClientViewer.OAuth;
 using TwitchClientViewer.Processes;
 using TwitchClientViewer.ViewModels;
 

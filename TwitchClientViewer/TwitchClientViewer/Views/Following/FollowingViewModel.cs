@@ -12,7 +12,14 @@ namespace TwitchClientViewer.Views.Following
 {
     public class FollowingViewModel 
     {
-        //PropertySupport.ExtractPropertyName(propertyExpression);
+        public ObservableCollection<LiveStreamViewModel> LiveStreams { get; set; }
+        public LiveStreamViewModel SelectedLiveStream { get; set; }
+        public ObservableCollection<Tuple<string, string>> SortOrders { get; set; }
+        public string SelectedSortOrder { get; set; }
+        public ObservableCollection<string> StreamsFilters { get; set; }
+        public CollectionView LiveStreamsCollection { get; private set; }
+        public string DisplayType { get; set; }
+
         public FollowingViewModel()
         {
             this.SelectedLiveStream = new LiveStreamViewModel();
@@ -23,16 +30,6 @@ namespace TwitchClientViewer.Views.Following
                 new Tuple<string, string>("Viewer Count", ReflectionUtility.GetMemberInfo((LiveStreamViewModel c) => c.ViewerCount).Name),
             };
         }
-
-        public ObservableCollection<LiveStreamViewModel> LiveStreams { get; set; }
-        public LiveStreamViewModel SelectedLiveStream { get; set; }
-        public ObservableCollection<Tuple<string, string>> SortOrders { get; set; }
-        public string SelectedSortOrder { get; set; }
-        public ObservableCollection<string> StreamsFilters { get; set; }
-        public CollectionView LiveStreamsCollection { get; private set; }
-        public string DisplayType { get; set; }
-
-
 
         private void Sort(object item)
         {
