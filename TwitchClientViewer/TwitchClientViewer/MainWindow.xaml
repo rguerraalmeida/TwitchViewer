@@ -78,6 +78,7 @@
         <Label x:Name="label" Content="Username:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="70"/>
         <TextBox x:Name="textBox" Text="dazzzY0" Height="23" Margin="85,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="181" KeyUp="textBox_KeyUp"/>
         <Button x:Name="signin" Content="Signin on Twitch" Margin="271,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="118" Click="signin_Click"  IsEnabled="False" Height="23"/>
+        
         <ListView x:Name="CurrentStreams" ItemsSource="{Binding LiveStreams}" Margin="10,44,0,10" HorizontalAlignment="Left" Width="379"
                   SelectedItem="{Binding SelectedLiveStream}" SelectionChanged="CurrentStreams_SelectionChanged">
             <ListView.ItemTemplate>
@@ -92,6 +93,11 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+
+       
+
+
         <Image Source="{Binding SelectedLiveStream.Logo}" HorizontalAlignment="Left" Height="60" Margin="394,44,0,0" VerticalAlignment="Top" Width="60"  />
         <TextBlock Text="{Binding SelectedLiveStream.DisplayName}" Height="23" Margin="459,44,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="427" KeyUp="textBox_KeyUp"/>
         <TextBlock Text="{Binding SelectedLiveStream.GameName}" Height="23" Margin="459,75,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="427" KeyUp="textBox_KeyUp"/>

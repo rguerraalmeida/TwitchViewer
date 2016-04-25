@@ -2,6 +2,7 @@
 using TwitchClientViewer.Models;
 using TwitchClientViewer.Api.Models;
 using TwitchClientViewer.OAuth;
+using System.Collections.Generic;
 
 namespace TwitchClientViewer.Api
 {
@@ -25,13 +26,15 @@ namespace TwitchClientViewer.Api
         public RequestData<StreamList> Streams(string username)
         {
             var requestUrl = "https://api.twitch.tv/kraken/streams/followed";
-            var response = HttpWebRequestWrapper.ExecuteWebRequest(requestUrl, OAuthData.token);
 
+            var response = HttpWebRequestWrapper.ExecuteWebRequest(requestUrl, OAuthData.token);
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 var responseError = HttpWebRequestWrapper.ParseResponse<RequestErrorMessage>(response.ResponseString);
+
                 return new RequestData<StreamList>(responseError);
             }
+
 
             var responseData = HttpWebRequestWrapper.ParseResponse<StreamList>(response.ResponseString);
             if (responseData != null && responseData.Total > 0)
@@ -68,5 +71,9 @@ namespace TwitchClientViewer.Api
             var responseData = HttpWebRequestWrapper.ParseResponse<StreamList>(response.ResponseString);
             return new RequestData<StreamList>(responseData);
         }
+
+        //public RequestData<StreamList> DownloadSteamListWithoutRecursion()
+        //{
+        //}
     }
 }
