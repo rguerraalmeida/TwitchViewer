@@ -21,7 +21,6 @@ namespace TwitchClientViewer
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
             Player.BeginStop(()=> { Player.Dispose(); });
             //base.OnClosing(e);
         }

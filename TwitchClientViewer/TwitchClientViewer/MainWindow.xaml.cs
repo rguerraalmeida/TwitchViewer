@@ -125,11 +125,11 @@ namespace TwitchClientViewer
 
         private void Play()
         {
-            //LivestreamerWrapper ls = new LivestreamerWrapper();
-            //ls.Start(StreamViewModel.SelectedLiveStream.LiveUrl, Helpers.LivestreamerOptions.Http);
+            LivestreamerWrapper ls = new LivestreamerWrapper();
+            ls.Start(StreamViewModel.SelectedLiveStream.LiveUrl, Helpers.LivestreamerOptions.Http);
 
-            VlcWindow vlcwindow = new VlcWindow();
-            vlcwindow.ShowDialog();
+            //VlcWindow vlcwindow = new VlcWindow();
+            //vlcwindow.ShowDialog();
         }
 
         private void MetroWindow_Closing(object sender, CancelEventArgs e)
