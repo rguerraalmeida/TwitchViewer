@@ -299,8 +299,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="ExternalLibs\livestreamer-v1.12.2-win32.zip" />
-    <None Include="ExternalLibs\vlc-2.2.4-win32.zip" />
+    <None Include="ExternalLibs\livestreamer-v1.12.2-win32.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ExternalLibs\vlc-2.2.4-win32.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
