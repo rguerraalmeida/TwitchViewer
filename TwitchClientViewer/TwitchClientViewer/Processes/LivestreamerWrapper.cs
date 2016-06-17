@@ -117,6 +117,8 @@ namespace TwitchClientViewer.Processes
                 FileName = "executor.bat",
                 UseShellExecute = false
             };
+
+            process = new Process();
             process.StartInfo = processStartInfo;
             process.Start();
             process.EnableRaisingEvents = true;

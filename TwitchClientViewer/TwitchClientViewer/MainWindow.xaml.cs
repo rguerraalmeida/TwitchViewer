@@ -38,6 +38,10 @@ namespace TwitchClientViewer
         Twitch api = new Twitch();
         StreamViewModel StreamViewModel = new StreamViewModel();
 
+        const string vlcPath = "vlc-2.2.4\\vlc.exe";
+        const string quality = "source"; //"best";
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -108,11 +112,11 @@ namespace TwitchClientViewer
                         GameLogo = stream.Preview.Medium,
                         PreviewTemplate = StreamPreviewTemplateUrl.Convert(stream.Preview.Template),
                         ViewerCount = stream.Viewers,
-                };
+                    };
 
                     streamsbuffer.Add(temp);
                 }
-                StreamViewModel.LiveStreams = new ObservableCollection<LiveStreamViewModel>(streamsbuffer.OrderBy(o=>o.ViewerCount));
+                StreamViewModel.LiveStreams = new ObservableCollection<LiveStreamViewModel>(streamsbuffer.OrderBy(o => o.ViewerCount));
                 StreamViewModel.RaisePropertyChangedOn(() => StreamViewModel.LiveStreams);
             }
 
@@ -125,11 +129,55 @@ namespace TwitchClientViewer
 
         private void Play()
         {
-            LivestreamerWrapper ls = new LivestreamerWrapper();
-            ls.Start(StreamViewModel.SelectedLiveStream.LiveUrl, Helpers.LivestreamerOptions.Http);
+            //LivestreamerWrapper ls = new LivestreamerWrapper();
+            //ls.Start(StreamViewModel.SelectedLiveStream.LiveUrl, Helpers.LivestreamerOptions.Http);
 
             //VlcWindow vlcwindow = new VlcWindow();
             //vlcwindow.ShowDialog();
+
+            this.PlayVLC();
+        }
+
+        private void createTempBat(string name, string quality, string player)
+        {
+            if (File.Exists("ExternalLibs\\temp.bat"))
+            {
+                File.Delete("ExternalLibs\\temp.bat");
+            }
+
+            StreamWriter streamWriter = new StreamWriter("ExternalLibs\\temp.bat", false);
+            try
+            {
+                streamWriter.WriteLine("@echo");
+                string[] strArrays = new string[] { "ExternalLibs\\livestreamer-v1.12.2\\livestreamer.exe -p \"ExternalLibs\\", player, "\" \"http://www.twitch.tv/", name, "\" ", quality };
+                streamWriter.WriteLine(string.Concat(strArrays));
+                streamWriter.WriteLine("@echo off");
+            }
+            finally
+            {
+                if (streamWriter != null)
+                {
+                    ((IDisposable)streamWriter).Dispose();
+                }
+            }
+        }
+
+
+        private void PlayVLC()
+        {
+            this.createTempBat(StreamViewModel.SelectedLiveStream.DisplayName, quality, vlcPath);
+            Process process = new Process();
+            ProcessStartInfo processStartInfo = new ProcessStartInfo()
+            {
+                CreateNoWindow = true,
+                FileName = "ExternalLibs\\temp.bat",
+                UseShellExecute = false
+            };
+
+            process.StartInfo = processStartInfo;
+            process.Start();
+            process.EnableRaisingEvents = true;
+            process.Exited += new EventHandler((object proc, EventArgs processEa) => AutoClosingMessageBox.Show("Stream Ended or Streamer is offline", "End", 2000));
         }
 
         private void MetroWindow_Closing(object sender, CancelEventArgs e)
@@ -144,6 +192,6 @@ namespace TwitchClientViewer
                 File.Delete("Data\\startLivestreamer.bat");
             }
         }
-              
+
     }
 }
