@@ -3,11 +3,26 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:wpf="clr-namespace:xZune.Vlc.Wpf;assembly=xZune.Vlc.Wpf"
+        xmlns:wpf="clr-namespace:Meta.Vlc.Wpf;assembly=Meta.Vlc.Wpf"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:TwitchClientViewer"
+        
         mc:Ignorable="d"
         Title="VlcWindow" Height="300" Width="300" Closing="Window_Closing">
     <Grid>
-        <wpf:VlcPlayer x:Name="Player" EndBehavior="Default"/>
+        <Grid.Resources>
+            <x:Array Type="{x:Type system:String}" x:Key="VlcOptions">
+                <system:String>-I</system:String>
+                <system:String>--dummy-quiet</system:String>
+                <system:String>--ignore-config</system:String>
+                <system:String>--no-video-title</system:String>
+                <system:String>--no-sub-autodetect-file</system:String>
+            </x:Array>
+        </Grid.Resources>
+        
+        <!-- <wpf:VlcPlayer x:Name="Player" VlcOption="{StaticResource VlcOptions}" LibVlcPath="..\..\libvlc" EndBehavior="Nothing" Stretch="Fill"/> -->
+        <!--LibVlcPath is defined in assembly info-->
+        <!--<wpf:VlcPlayer x:Name="Player" EndBehavior="Nothing"/>-->
+        <wpf:VlcPlayer x:Name="Player" VlcOption="{StaticResource VlcOptions}" EndBehavior="Nothing" Stretch="Fill"/>
     </Grid>
 </Window>

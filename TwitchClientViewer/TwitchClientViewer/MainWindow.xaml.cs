@@ -129,14 +129,20 @@ namespace TwitchClientViewer
 
         private void Play()
         {
-            //LivestreamerWrapper ls = new LivestreamerWrapper();
-            //ls.Start(StreamViewModel.SelectedLiveStream.LiveUrl, Helpers.LivestreamerOptions.Http);
+            this.PlayWithXZunePLayer();
 
-            //VlcWindow vlcwindow = new VlcWindow();
-            //vlcwindow.ShowDialog();
-
-            this.PlayVLC();
+            //this.PlayWithVlcExternalPlayer();
         }
+
+        private void PlayWithXZunePLayer()
+        {
+            LivestreamerWrapper ls = new LivestreamerWrapper();
+            ls.Start(StreamViewModel.SelectedLiveStream.LiveUrl, Helpers.LivestreamerOptions.Http);
+
+            VlcWindow vlcwindow = new VlcWindow();
+            vlcwindow.ShowDialog();
+        }
+
 
         private void createTempBat(string name, string quality, string player)
         {
@@ -162,8 +168,7 @@ namespace TwitchClientViewer
             }
         }
 
-
-        private void PlayVLC()
+        private void PlayWithVlcExternalPlayer()
         {
             this.createTempBat(StreamViewModel.SelectedLiveStream.DisplayName, quality, vlcPath);
             Process process = new Process();
@@ -180,18 +185,17 @@ namespace TwitchClientViewer
             process.Exited += new EventHandler((object proc, EventArgs processEa) => AutoClosingMessageBox.Show("Stream Ended or Streamer is offline", "End", 2000));
         }
 
-        private void MetroWindow_Closing(object sender, CancelEventArgs e)
-        {
-            if (File.Exists("Data\\temp.bat"))
-            {
-                File.Delete("Data\\temp.bat");
-            }
-
-            if (File.Exists("Data\\startLivestreamer.bat"))
-            {
-                File.Delete("Data\\startLivestreamer.bat");
-            }
-        }
-
+         private void MetroWindow_Closing(object sender, CancelEventArgs e)
+         {
+             if (File.Exists("Data\\temp.bat"))
+             {
+                 File.Delete("Data\\temp.bat");
+             }
+ 
+             if (File.Exists("Data\\startLivestreamer.bat"))
+             {
+                 File.Delete("Data\\startLivestreamer.bat");
+             }
+         }
     }
 }

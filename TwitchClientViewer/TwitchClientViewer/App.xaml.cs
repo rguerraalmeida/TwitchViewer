@@ -23,6 +23,10 @@ namespace TwitchClientViewer
         private const string vlcZipPath = @"ExternalLibs\vlc-2.2.4-win32.zip";
         private const string vlcExePath = @"ExternalLibs\vlc-2.2.4\vlc.exe";
 
+        private const string libvlcPath = @"ExternalLibs\libvlc";
+        private const string libvlcZipPath = @"ExternalLibs\libvlc.zip";
+
+
         protected override void OnStartup(StartupEventArgs e)
         {
             //AppService.Instance.RegisterView<MainView, MainViewModel>();
@@ -52,6 +56,11 @@ namespace TwitchClientViewer
                 throw new FileNotFoundException(@"Unable to find the required file " + livestreamerZipPath);
             }
 
+            if (!File.Exists(libvlcZipPath))
+            {
+                throw new FileNotFoundException(@"Unable to find the required file " + libvlcZipPath);
+            }
+
             try
             {
                 if (Directory.Exists(livestreamerPath))
@@ -63,17 +72,22 @@ namespace TwitchClientViewer
                 {
                     Directory.Delete(vlcPath, true);
                 }
+
+                if (Directory.Exists(libvlcPath))
+                {
+                    Directory.Delete(libvlcPath, true);
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-
             try
             {
                 ZipFile.ExtractToDirectory(livestreamerZipPath, externalLibsPath);
                 ZipFile.ExtractToDirectory(vlcZipPath, externalLibsPath);
+                ZipFile.ExtractToDirectory(libvlcZipPath, externalLibsPath);
             }
             catch (Exception ex)
             {

@@ -3,7 +3,7 @@ using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
-using xZune.Vlc;
+using Meta.Vlc;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -59,4 +59,4 @@ using xZune.Vlc;
 
 //[assembly: VlcSettings(@"xZune.Vlc.lib\LibVlc", "-I", "dummy", "--ignore-config", "--no-video-title")]
 //[assembly: VlcSettings(@"\xZune.Vlc.lib\LibVlc\libvlc", "-I", "--dummy-quiet", "--ignore-config", "--no-video-title", "--no-sub-autodetect-file")]
-[assembly: VlcSettings(@"ExternalLibs\xZune.Vlc.lib\LibVlc")]
+[assembly: VlcSettings(@"ExternalLibs\libvlc")]
